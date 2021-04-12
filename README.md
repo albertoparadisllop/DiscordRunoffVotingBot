@@ -1,3 +1,7 @@
+Bot to perform Instant-runoff voting on Discord.
+
+https://en.wikipedia.org/wiki/Instant-runoff_voting#Election_procedure
+
 Made using the amazing https://github.com/Rapptz/discord.py
 
 Forgive me for the spaghetti code.

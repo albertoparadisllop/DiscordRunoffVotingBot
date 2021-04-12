@@ -48,7 +48,7 @@ You can also run the bot directly from the command line by running the command:
 
 Replacing `TOKEN` with your bot's token.
 
-# Closing the bot
+## Closing the bot
 
 `Ctrl+C` on your keyboard with the CMD window focused should close the bot. Closing the whole CMD window will probably work too.
 
@@ -70,3 +70,14 @@ Note:
 * `vote <candidate1>:<preference1> [candidate2>:<preference2 ...]` - Registers a vote. `preference` values should be thought of as "1st option" for value 1, "2nd option" for value 2... Not all candidates need a vote. Just delete that line if you never want to give it a vote.
 * `removeVoting` - Removes the voting without calculating a winner.
 * `prefix <newPrefix>` - Changes command prefix to given one.
+
+## TODO:
+[ ] Make it so that each person can only vote once per vote
+[ ] Make it so that people can modify their vote if they recast it
+[ ] Invite command so people can invite the bot to a server
+[ ] Command aliases
+
+## TODO Maybe
+[ ] Custom command aliases per server
+[ ] Make it pretty
+[ ] Send channel id for vote collection

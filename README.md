@@ -76,6 +76,7 @@ Note:
 - [ ] Make it so that people can modify their vote if they recast it
 - [ ] Invite command so people can invite the bot to a server
 - [ ] Command aliases
+- [ ] Add a "commands" command
 
 ## TODO Maybe
 - [ ] Custom command aliases per server

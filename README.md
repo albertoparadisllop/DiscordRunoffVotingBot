@@ -79,6 +79,7 @@ Note:
 * `help` or `contact` - Sends a message with my Discord name for contact `PixeledBrain#0070`
 * `invite` - Invite link for my bot using this. (you can modify the link to yours in botClient.py)
 * `github` - Links this page
+* `commands` - Lists commands... kinda :P
 
 ## TODO:
 - [X] Make it so that each person can only vote once per vote

@@ -32,7 +32,8 @@ class VotingClient(discord.Client):
                      "invite": self.invite,
                      "github": self.githubLink,
                      "contact": self.contact,
-                     "help": self.contact
+                     "help": self.contact,
+                     "commands": self.commands
                     }
 
         self.servers = {}
@@ -178,6 +179,9 @@ class VotingClient(discord.Client):
 
     async def invite(self, ctx):
         await ctx.channel.send("Invite me to a server using: <https://discord.com/oauth2/authorize?client_id=830927490482569217&permissions=347200&scope=bot>")
+
+    async def commands(self, ctx):
+        await ctx.channel.send("Look at the README for commands: <https://github.com/pixeledbrain/DiscordRunoffVotingBot> \nOr just contact the creator for help: PixeledBrain#0070 (I'll make an actual commands command someday, sorry)")
 
     async def startUp(self, ctx, paramList):
         newServerData = ServerData(id = ctx.guild.id)

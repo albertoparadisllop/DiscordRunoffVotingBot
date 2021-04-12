@@ -93,7 +93,7 @@ Note:
 
 Command | Description | Permissions | Example
 ------------ | ------------- | ------------- | -------------
-`startUp <AdminRole id> [new Prefix]` | Creates server data. Sets bot `AdminRole` (need to role ID, not name), and optionally, a new prefix. | Discord "Administrator" Permission | `!startUp 556940676495835146 $`
+`startUp <AdminRole id> [new Prefix]` | Creates server data. Sets bot `AdminRole` (need to provide role ID, not name), and optionally, a new prefix. | Discord "Administrator" Permission | `!startUp 556940676495835146 $`
 `exit` | Removes any stored server data. | AdminRole | `!exit`
 `createElection <c1>,<c2>[, ...]` | creates an election with the given candidates, and prints out a nice copy-pastable vote message. Opens the voting. | AdminRole | `!createElection candidate1,candidate2,candidate3`
 `closeElection` |  Makes people unable to vote. | AdminRole | `!closeElection`

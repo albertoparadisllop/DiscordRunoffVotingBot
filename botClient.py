@@ -5,12 +5,12 @@ defaultPrefix = "!"
 
 class ServerData():
 
-    def __init__(self, id, adminRole=0, prefix=defaultPrefix, voteInstance=None, votingOpen=False):
+    def __init__(self, id, adminRole=0, prefix=defaultPrefix, electionInstance=None, electionOpen=False):
         self.id = id
         self.adminRole = adminRole
-        self.voteInstance = voteInstance
+        self.electionInstance = electionInstance
         self.prefix = prefix
-        self.votingOpen = votingOpen
+        self.electionOpen = electionOpen
         self.voteList = None
 
 class VotingClient(discord.Client):
@@ -19,13 +19,12 @@ class VotingClient(discord.Client):
 
         self.commands = {
                      None: self.noCommand,
-                     "echo": self.echo,
-                     "createvote": self.createVote,
+                     "createelection": self.createElection,
                      "vote": self.vote,
-                     "closevoting": self.closeVoting,
-                     "openvoting": self.openVoting,
-                     "calculatewinner": self.calculateWinner,
-                     "removevoting": self.removeVoting,
+                     "closeelection": self.closeElection,
+                     "openelection": self.openElection,
+                     "electionwinner": self.electionWinner,
+                     "removeelection": self.removeElection,
                      "exit": self.closeBot,
                      "startup": self.startUp,
                      "prefix": self.changePrefix,
@@ -66,39 +65,28 @@ class VotingClient(discord.Client):
             print('Message from {0.author}: {0.content}'.format(message))
             res = await self.run_command(message.content, message)
 
-
-    async def echo(self, ctx, message):
-        try:
-            messageJoined = " ".join(message)
-            await ctx.channel.send(messageJoined)
-            return 1
-        except:
-            return -1
-
-    async def createVote(self, ctx, paramList):
+    async def createElection(self, ctx, paramList):
         if await self.isAdmin(ctx):
             candidateString = " ".join(paramList)
             candidates = [i.strip() for i in candidateString.split(",")]
-            if(self.servers[ctx.guild.id].voteInstance == None):
-                self.servers[ctx.guild.id].voteInstance = voting.Voting(candidates)
-                self.servers[ctx.guild.id].votingOpen = True
+            if(self.servers[ctx.guild.id].electionInstance == None):
+                self.servers[ctx.guild.id].electionInstance = voting.Voting(candidates)
+                self.servers[ctx.guild.id].electionOpen = True
                 self.servers[ctx.guild.id].voteList = {}
                 messageList = [self.servers[ctx.guild.id].prefix+"vote"]
                 for i in candidates:
                     messageList.append(f"{i}:x")
                 message = "\n".join(messageList)
-                await ctx.channel.send(f"Vote created! Send Your votes in now with the following format (you can copy and paste, replace `x` with the priority): \n```\n{message}\n```\nSend `!closeVoting` to close votes, and `!calculateWinner` to calculate a winner!")
+                await ctx.channel.send(f"Election created! Send Your votes in now with the following format (you can copy and paste, replace `x` with the priority, and remove lines): \n```\n{message}\n```\nSend `!closeElection` to close votes, and `!electionWinner` to calculate a winner!")
             else:
-                await ctx.channel.send("Voting already in progress!\n Use `!removeVoting` to remove it, or `!calculateWinner` to calculate the previous bot's winner!")
-        else:
-            print("NOT ADMIN ROLE")
+                await ctx.channel.send("Election already in progress!\n Use `!removeElection` to remove it, or `!electionWinner` to calculate the previous election's winner!")
     
     async def vote(self, ctx, paramList):
         if await self.isStarted(ctx):
-            if(self.servers[ctx.guild.id].voteInstance == None):
-                await ctx.channel.send("Vote not yet created. Run `!createVote [candidates]` to create a vote!")
-            elif(not self.servers[ctx.guild.id].votingOpen):
-                await ctx.channel.send("Voting not open!")
+            if(self.servers[ctx.guild.id].electionInstance == None):
+                await ctx.channel.send("Election not yet created. Run `!createElection [candidates]` to create an election!")
+            elif(not self.servers[ctx.guild.id].electionOpen):
+                await ctx.channel.send("Election not open!")
             else:
                 voteToMake = {}
                 voteList = ctx.content.split("\n")[1:]
@@ -107,51 +95,51 @@ class VotingClient(discord.Client):
                     voteToMake[int(parts[1])] = parts[0]
                 try:
                     if(ctx.author.id in self.servers[ctx.guild.id].voteList.keys()):
-                        self.servers[ctx.guild.id].voteInstance.removeVote(self.servers[ctx.guild.id].voteList[ctx.author.id])
-                    voteID = self.servers[ctx.guild.id].voteInstance.addVote(voteToMake)
+                        self.servers[ctx.guild.id].electionInstance.removeVote(self.servers[ctx.guild.id].voteList[ctx.author.id])
+                    voteID = self.servers[ctx.guild.id].electionInstance.addVote(voteToMake)
                     self.servers[ctx.guild.id].voteList[ctx.author.id] = voteID
                     await ctx.channel.send("Vote added!")
                 except Exception:
                     await ctx.channel.send("Error adding vote :(")
 
-    async def openVoting(self, ctx):
+    async def openElection(self, ctx):
         if await self.isAdmin(ctx):
-            if(self.servers[ctx.guild.id].voteInstance == None):
-                await ctx.channel.send("Vote not yet created. Run `!createVote [candidates]` to create a vote!")
-            elif(self.servers[ctx.guild.id].votingOpen):
-                await ctx.channel.send("Vote already open!")
+            if(self.servers[ctx.guild.id].electionInstance == None):
+                await ctx.channel.send("Election not yet created. Run `!createElection [candidates]` to create an election!")
+            elif(self.servers[ctx.guild.id].electionOpen):
+                await ctx.channel.send("Election already open!")
             else:
-                self.servers[ctx.guild.id].votingOpen = True
-                await ctx.channel.send("Voting opened!")
+                self.servers[ctx.guild.id].electionOpen = True
+                await ctx.channel.send("Election opened!")
 
-    async def closeVoting(self, ctx):
+    async def closeElection(self, ctx):
         if await self.isAdmin(ctx):
-            if(self.servers[ctx.guild.id].voteInstance == None):
-                await ctx.channel.send("Vote not yet created. Run `!createVote [candidates]` to create a vote!")
-            elif(not self.servers[ctx.guild.id].votingOpen):
-                await ctx.channel.send("Vote already closed!")
+            if(self.servers[ctx.guild.id].electionInstance == None):
+                await ctx.channel.send("Election not yet created. Run `!createElection [candidates]` to create an election!")
+            elif(not self.servers[ctx.guild.id].electionOpen):
+                await ctx.channel.send("Election already closed!")
             else:
-                self.servers[ctx.guild.id].votingOpen = False
-                await ctx.channel.send("Voting closed!")
+                self.servers[ctx.guild.id].electionOpen = False
+                await ctx.channel.send("Election closed!")
 
-    async def calculateWinner(self, ctx):
+    async def electionWinner(self, ctx):
         if await self.isAdmin(ctx):
-            if(self.servers[ctx.guild.id].voteInstance == None):
-                await ctx.channel.send("Vote not yet created. Run `!createVote [candidates]` to create a vote!")
+            if(self.servers[ctx.guild.id].electionInstance == None):
+                await ctx.channel.send("Election not yet created. Run `!createElection [candidates]` to create an election!")
             else:
-                winner, endvotes = self.servers[ctx.guild.id].voteInstance.calculateResult()
-                self.servers[ctx.guild.id].votingOpen = False
-                self.servers[ctx.guild.id].voteInstance = None
-                await ctx.channel.send(f"Vote winner is: **{winner}**!")
+                winner, endvotes = self.servers[ctx.guild.id].electionInstance.calculateResult()
+                self.servers[ctx.guild.id].electionOpen = False
+                self.servers[ctx.guild.id].electionInstance = None
+                await ctx.channel.send(f"Election winner is: **{winner}**!")
 
-    async def removeVoting(self, ctx):
+    async def removeElection(self, ctx):
         if await self.isAdmin(ctx):
-            if(self.servers[ctx.guild.id].voteInstance == None):
-                await ctx.channel.send("Vote not yet created. Nothing closed!")
+            if(self.servers[ctx.guild.id].electionInstance == None):
+                await ctx.channel.send("Election not yet created. Nothing closed!")
             else:
-                self.servers[ctx.guild.id].votingOpen = False
-                self.servers[ctx.guild.id].voteInstance = None
-                await ctx.channel.send("Voting removed!")
+                self.servers[ctx.guild.id].electionOpen = False
+                self.servers[ctx.guild.id].electionInstance = None
+                await ctx.channel.send("Election removed!")
 
     async def closeBot(self, ctx):
         if await self.isAdmin(ctx):

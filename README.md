@@ -62,28 +62,42 @@ Replacing `TOKEN` with your bot's token.
 
 `Ctrl+C` on your keyboard with the CMD window focused should close the bot. Closing the whole CMD window will probably work too.
 
+## Use example
+
+After having done set up the bot, and have it in a server, while online, an example use case could be the following:
+
+1. Copy the role ID for whatever role you want to make the bot administrator role, people with this role will be able to manage elections.
+2. Send a message on Discord with `!startUp ROLEID`, replacing "ROLEID" with the role id you copied earlier.
+3. To create an election, run `!createElection option1,option2,option3`. You can replace the options, or add and remove more.
+4. Copy the command example the bot provides, and on each line, replace "x" with your desired preference. You can remove lines for votes you dont want to make.
+5. Once everyone has voted, run `!electionWinner` to get a result. This gets rid of the election. 
+6. Go back to step 3 if you want to set up another one.
+
 ## Commands:
 
 Default prefix: `!`
+
+Note that commands are not case-sensitive, but any parameters are.
 
 Note:
 `<VAR>` - means VAR is obligatory
 `[VAR]` -  means VAR is optional
 
-* `echo <Text>` - I just use it to check if the bot is alive.
-* `startUp <adminRole id> [new Prefix]` - Creates server data. Stores an administration role (need to pass role ID), and optionally, a new prefix.
-* `exit` - Removes any stored server data
-* `createVote <candidate1>,<candidate2>[, ...]` creates a vote with the given candidates, and prints out a nice copy-pastable vote message. Opens the voting.
-* `closeVoting` - Makes people unable to vote
-* `openVoting` - Makes peolpe able to vote (if it was closed manually)
-* `calculateWinner` - Calculates the vote's winner, and removes the current vote.
-* `vote <candidate1>:<preference1> [candidate2>:<preference2 ...]` - Registers a vote. `preference` values should be thought of as "1st option" for value 1, "2nd option" for value 2... Not all candidates need a vote. Just delete that line if you never want to give it a vote. If a person casts more than one vote, their previous one is deleted.
-* `removeVoting` - Removes the voting without calculating a winner.
-* `prefix <newPrefix>` - Changes command prefix to given one.
-* `help` or `contact` - Sends a message with my Discord name for contact `PixeledBrain#0070`
-* `invite` - Invite link for my bot using this. (you can modify the link to yours in botClient.py)
-* `github` - Links this page
-* `commands` - Lists commands... kinda :P
+Command | Description | Permissions
+------------ | ------------- | -------------
+`startUp <AdminRole id> [new Prefix]` | Creates server data. Sets bot `AdminRole` (need to pass role ID), and optionally, a new prefix. | Discord "Administrator" Permission
+`exit` | Removes any stored server data. | AdminRole
+`createElection <candidate1>,<candidate2>[, ...]` | creates an election with the given candidates, and prints out a nice copy-pastable vote message. Opens the voting. | AdminRole
+`closeElection` |  Makes people unable to vote. | AdminRole
+`openElection` | Makes peolpe able to vote (if it was closed manually). | AdminRole
+`electionWinner` | Calculates the election's winner, and removes the current vote. | AdminRole
+`vote <candidate1>:<preference1> [candidate2>:<preference2 ...]` | Registers a vote. `preference` values should be thought of as "1st option" for value 1, "2nd option" for value 2... Not all candidates need a vote. Just delete that line if you never want to give it a vote. If a person casts more than one vote, their previous one is deleted. | Anyone
+`prefix <newPrefix>` | Changes command prefix to given one. | AdminRole
+`help` or `contact` | Sends a message with my Discord name for contact `PixeledBrain#0070`. | Anyone
+`invite` | Invite link for my bot using this. (you can modify the link to yours in botClient.py). | Anyone
+`github` | Links this page. | Anyone
+`commands` | Lists commands... kinda :P | Anyone
+
 
 ## TODO:
 - [X] Make it so that each person can only vote once per vote
@@ -95,8 +109,11 @@ Note:
 - [ ] Command aliases
 - [ ] Save status every so often
 - [ ] Load from previous status
-- [ ] Remove echo command
+- [X] Remove echo command
 - [ ] Make an actual `commands` command
+- [X] Refactor (difference between vote and election)
+- [X] Add use instructions
+- [X] Change readme commands section to a table.
 
 ## TODO Maybe
 - [ ] Remove vote command
@@ -104,3 +121,4 @@ Note:
 - [ ] Make it pretty
 - [ ] Send channel id for vote collection
 - [ ] Private voting? dms?
+- [ ] Multiple elections per server simultaneously (with name ids?)

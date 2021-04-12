@@ -8,7 +8,7 @@ Forgive me for the spaghetti code.
 
 # Contact:
 
-Any suggestions, questions, or anything else? Feel free to contact me, im lonely.
+Any suggestions, questions, or anything else? Feel free to contact me, I'm lonely.
 
 Contact me on Discord: `@PixeledBrain#0070` or by email: pixeledbrain@gmail.com
 

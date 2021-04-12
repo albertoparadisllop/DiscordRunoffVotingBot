@@ -123,7 +123,7 @@ Command | Description | Permissions | Example
 - [X] Refactor (difference between vote and election)
 - [X] Add use instructions
 - [X] Change readme commands section to a table.
-- [ ] Put each component into it's own folder.
+- [ ] Put each component into its own folder.
 - [ ] Fix up code for bot class.
 
 ## TODO Maybe

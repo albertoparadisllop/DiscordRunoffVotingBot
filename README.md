@@ -83,20 +83,21 @@ Note:
 `<VAR>` - means VAR is obligatory
 `[VAR]` -  means VAR is optional
 
-Command | Description | Permissions
------------- | ------------- | -------------
-`startUp <AdminRole id> [new Prefix]` | Creates server data. Sets bot `AdminRole` (need to pass role ID), and optionally, a new prefix. | Discord "Administrator" Permission
-`exit` | Removes any stored server data. | AdminRole
-`createElection <candidate1>,<candidate2>[, ...]` | creates an election with the given candidates, and prints out a nice copy-pastable vote message. Opens the voting. | AdminRole
-`closeElection` |  Makes people unable to vote. | AdminRole
-`openElection` | Makes peolpe able to vote (if it was closed manually). | AdminRole
-`electionWinner` | Calculates the election's winner, and removes the current vote. | AdminRole
-`vote <candidate1>:<preference1> [candidate2>:<preference2 ...]` | Registers a vote. `preference` values should be thought of as "1st option" for value 1, "2nd option" for value 2... Not all candidates need a vote. Just delete that line if you never want to give it a vote. If a person casts more than one vote, their previous one is deleted. | Anyone
-`prefix <newPrefix>` | Changes command prefix to given one. | AdminRole
-`help` or `contact` | Sends a message with my Discord name for contact `PixeledBrain#0070`. | Anyone
-`invite` | Invite link for my bot using this. (you can modify the link to yours in botClient.py). | Anyone
-`github` | Links this page. | Anyone
-`commands` | Lists commands... kinda :P | Anyone
+Command | Description | Permissions | Example
+------------ | ------------- | ------------- | -------------
+`startUp <AdminRole id> [new Prefix]` | Creates server data. Sets bot `AdminRole` (need to role ID, not name), and optionally, a new prefix. | Discord "Administrator" Permission | `!startUp 556940676495835146 $`
+`exit` | Removes any stored server data. | AdminRole | `!exit`
+`createElection <c1>,<c2>[, ...]` | creates an election with the given candidates, and prints out a nice copy-pastable vote message. Opens the voting. | AdminRole | `!createElection candidate1,candidate2,candidate3`
+`closeElection` |  Makes people unable to vote. | AdminRole | `!closeElection`
+`openElection` | Makes peolpe able to vote (if it was closed manually). | AdminRole | `!openElection`
+`electionWinner` | Calculates the election's winner, and removes the current vote. | AdminRole  | `!electionWinner`
+`vote <c1>:<pr1> [c2>:<pr2 ...]` | Registers a vote. `preference` values should be thought of as "1st option" for value 1, "2nd option" for value 2... Not all candidates need a vote. If a person casts more than one vote, their previous one is deleted. | Anyone  | -
+`removeVote` | Removes the caller's vote | Anyone | `!removeVote`
+`prefix <newPrefix>` | Changes command prefix to given one. | AdminRole | `!prefix $`
+`help` or `contact` | Sends a message with my Discord name for contact `PixeledBrain#0070`. | Anyone | `!help`
+`invite` | Invite link for my bot using this. (you can modify the link to yours in botClient.py). | Anyone | `!invite`
+`github` | Links this page. | Anyone | `!github`
+`commands` | Lists commands... kinda :P | Anyone | `!commands`
 
 
 ## TODO:

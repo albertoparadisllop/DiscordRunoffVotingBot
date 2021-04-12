@@ -21,6 +21,7 @@ class VotingClient(discord.Client):
                      None: self.noCommand,
                      "createelection": self.createElection,
                      "vote": self.vote,
+                     "removevote": self.removeVote,
                      "closeelection": self.closeElection,
                      "openelection": self.openElection,
                      "electionwinner": self.electionWinner,
@@ -84,7 +85,7 @@ class VotingClient(discord.Client):
     async def vote(self, ctx, paramList):
         if await self.isStarted(ctx):
             if(self.servers[ctx.guild.id].electionInstance == None):
-                await ctx.channel.send("Election not yet created. Run `!createElection [candidates]` to create an election!")
+                await ctx.channel.send("No election going on!")
             elif(not self.servers[ctx.guild.id].electionOpen):
                 await ctx.channel.send("Election not open!")
             else:
@@ -101,6 +102,20 @@ class VotingClient(discord.Client):
                     await ctx.channel.send("Vote added!")
                 except Exception:
                     await ctx.channel.send("Error adding vote :(")
+
+    async def removeVote(self, ctx):
+        if await self.isStarted(ctx):
+            if(self.servers[ctx.guild.id].electionInstance == None):
+                await ctx.channel.send("No election going on!")
+            elif(not self.servers[ctx.guild.id].electionOpen):
+                await ctx.channel.send("Election not open!")
+            else:
+                if(ctx.author.id in self.servers[ctx.guild.id].voteList.keys()):
+                    self.servers[ctx.guild.id].electionInstance.removeVote(self.servers[ctx.guild.id].voteList[ctx.author.id])
+                    del self.servers[ctx.guild.id].voteList[ctx.author.id]
+                    await ctx.channel.send("Your vote was removed!")
+                else:
+                    await ctx.channel.send("You have not yet voted in this election!")
 
     async def openElection(self, ctx):
         if await self.isAdmin(ctx):
@@ -130,7 +145,10 @@ class VotingClient(discord.Client):
                 winner, endvotes = self.servers[ctx.guild.id].electionInstance.calculateResult()
                 self.servers[ctx.guild.id].electionOpen = False
                 self.servers[ctx.guild.id].electionInstance = None
-                await ctx.channel.send(f"Election winner is: **{winner}**!")
+                if winner is not None:
+                    await ctx.channel.send(f"Election winner is: **{winner}**!")
+                else:
+                    await ctx.channel.send(f"No votes were provided. Removed election.")
 
     async def removeElection(self, ctx):
         if await self.isAdmin(ctx):

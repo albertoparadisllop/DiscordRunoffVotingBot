@@ -96,6 +96,9 @@ class Voting:
 		majorityAchieved = False
 		electionWinner = None
 
+		if len(self.voteList) == 0:
+			return (None, [])
+
 		while not majorityAchieved:
 			votes = self.calculateVotes()
 			winner = self.checkMajority(votes)

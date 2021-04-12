@@ -95,13 +95,19 @@ class VotingClient(discord.Client):
                     parts = [i.strip() for i in line.split(":")]
                     voteToMake[int(parts[1])] = parts[0]
                 try:
+                    replaced = False
                     if(ctx.author.id in self.servers[ctx.guild.id].voteList.keys()):
                         self.servers[ctx.guild.id].electionInstance.removeVote(self.servers[ctx.guild.id].voteList[ctx.author.id])
+                        replaced = True
                     voteID = self.servers[ctx.guild.id].electionInstance.addVote(voteToMake)
                     self.servers[ctx.guild.id].voteList[ctx.author.id] = voteID
-                    await ctx.channel.send("Vote added!")
-                except Exception:
+                    if not replaced:
+                        await ctx.channel.send("Vote added!")
+                    else:
+                        await ctx.channel.send("Vote replaced!")
+                except Exception as Err:
                     await ctx.channel.send("Error adding vote :(")
+                    print(Err)
 
     async def removeVote(self, ctx):
         if await self.isStarted(ctx):
@@ -146,7 +152,9 @@ class VotingClient(discord.Client):
                 self.servers[ctx.guild.id].electionOpen = False
                 self.servers[ctx.guild.id].electionInstance = None
                 if winner is not None:
-                    await ctx.channel.send(f"Election winner is: **{winner}**!")
+                    resultList = [f"{candidate} --> {votes} votes" for candidate,votes in endvotes.items()]
+                    resultString = "\n".join(resultList)
+                    await ctx.channel.send(f"Election winner is: **{winner}**!\nAt the time majority was achieved, results were:\n{resultString}")
                 else:
                     await ctx.channel.send(f"No votes were provided. Removed election.")
 

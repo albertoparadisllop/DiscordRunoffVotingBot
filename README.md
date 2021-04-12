@@ -14,6 +14,14 @@ Contact me on Discord: `#PixeledBrain#0070` or by email: pixeledbrain@gmail.com
 
 # Instructions:
 
+## Use a preexisting bot:
+
+To invite my instance of this bot, use this link:
+
+https://discord.com/oauth2/authorize?client_id=830927490482569217&permissions=347200&scope=bot
+
+It will probably be offline though, if you want to use it, feel free to poke me on Discord `#PixeledBrain#0070`
+
 ## Requirements:
 
 #### Python and packages.
@@ -118,6 +126,7 @@ Command | Description | Permissions | Example
 
 ## TODO Maybe
 - [X] Remove vote command
+- [X] Show vote results
 - [ ] Custom command aliases per server
 - [ ] Make it pretty
 - [ ] Send channel id for vote collection

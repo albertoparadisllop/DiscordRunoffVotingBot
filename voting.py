@@ -4,7 +4,8 @@ class Voting:
 
 	def __init__(self, candidates = []):
 		self.candidates = candidates
-		self.voteList = []
+		self.voteList = {}
+		self.voteCounter = 0
 
 	def addCandidate(self,name):
 		self.candidates.append(name)
@@ -18,10 +19,18 @@ class Voting:
 		try:
 			assert all([i in self.candidates for i in list(preferenceList.values())])
 			assert all([isinstance(i,numbers.Number) for i in preferenceList.keys()])
-			self.voteList.append(preferenceList)
-			print("Vote added")
+			self.voteList[self.voteCounter] = preferenceList
+			self.voteCounter += 1
+			return self.voteCounter - 1
+		except Exception:
+			raise IOException
+
+	def removeVote(self,voteId):
+		try:
+			assert voteId in list(self.voteList.keys())
+			del self.voteList[voteId]
 		except:
-			print("Vote not added.")
+			raise IOException
 
 	@classmethod
 	def getPreferredCandidate(cls, vote):
@@ -36,11 +45,11 @@ class Voting:
 
 	def removeCandidateFromVotes(self, candidate):
 		assert candidate in self.candidates
-		newVoteList = []
+		newVoteList = {}
 
-		for vote in self.voteList:
+		for i, vote in self.voteList.items():
 			vote.pop(self.get_key(vote,candidate), None)
-			newVoteList.append(vote)
+			newVoteList[i] = vote
 
 		self.voteList = newVoteList
 
@@ -49,7 +58,7 @@ class Voting:
 		for candidate in self.candidates:
 			votes[candidate] = 0
 
-		for vote in self.voteList:
+		for i, vote in self.voteList.items():
 			votes[self.getPreferredCandidate(vote)] += 1
 
 		return votes

@@ -72,11 +72,12 @@ Note:
 * `prefix <newPrefix>` - Changes command prefix to given one.
 
 ## TODO:
-- [ ] Make it so that each person can only vote once per vote
-- [ ] Make it so that people can modify their vote if they recast it
+- [X] Make it so that each person can only vote once per vote
+- [X] Make it so that people can modify their vote if they recast it
 - [ ] Invite command so people can invite the bot to a server
 - [ ] Command aliases
 - [ ] Add a "commands" command
+- [ ] Save status every so often?
 
 ## TODO Maybe
 - [ ] Custom command aliases per server

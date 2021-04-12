@@ -11,6 +11,7 @@ class ServerData():
         self.voteInstance = voteInstance
         self.prefix = prefix
         self.votingOpen = votingOpen
+        self.voteList = None
 
 class VotingClient(discord.Client):
 
@@ -59,7 +60,6 @@ class VotingClient(discord.Client):
         if message.author != self.user:
             print('Message from {0.author}: {0.content}'.format(message))
             res = await self.run_command(message.content, message)
-            print(res)
 
 
     async def echo(self, ctx, message):
@@ -74,10 +74,10 @@ class VotingClient(discord.Client):
         if await self.isAdmin(ctx):
             candidateString = " ".join(paramList)
             candidates = [i.strip() for i in candidateString.split(",")]
-            print(candidates)
             if(self.servers[ctx.guild.id].voteInstance == None):
                 self.servers[ctx.guild.id].voteInstance = voting.Voting(candidates)
                 self.servers[ctx.guild.id].votingOpen = True
+                self.servers[ctx.guild.id].voteList = {}
                 messageList = [self.servers[ctx.guild.id].prefix+"vote"]
                 for i in candidates:
                     messageList.append(f"{i}:x")
@@ -101,11 +101,13 @@ class VotingClient(discord.Client):
                     parts = [i.strip() for i in line.split(":")]
                     voteToMake[int(parts[1])] = parts[0]
                 try:
-                    self.servers[ctx.guild.id].voteInstance.addVote(voteToMake)
+                    if(ctx.author.id in self.servers[ctx.guild.id].voteList.keys()):
+                        self.servers[ctx.guild.id].voteInstance.removeVote(self.servers[ctx.guild.id].voteList[ctx.author.id])
+                    voteID = self.servers[ctx.guild.id].voteInstance.addVote(voteToMake)
+                    self.servers[ctx.guild.id].voteList[ctx.author.id] = voteID
                     await ctx.channel.send("Vote added!")
-                except Exception as err:
+                except Exception:
                     await ctx.channel.send("Error adding vote :(")
-                    print(err)
 
     async def openVoting(self, ctx):
         if await self.isAdmin(ctx):

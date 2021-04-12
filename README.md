@@ -1,8 +1,8 @@
-Bot to perform Instant-runoff voting on Discord.
+Bot to perform [Instant-runoff voting](https://en.wikipedia.org/wiki/Instant-runoff_voting#Election_procedure) on Discord.
 
-https://en.wikipedia.org/wiki/Instant-runoff_voting#Election_procedure
 
-Made using the amazing https://github.com/Rapptz/discord.py
+
+Made using the amazing [discord.py](https://github.com/Rapptz/discord.py)
 
 Forgive me for the spaghetti code.
 
@@ -10,7 +10,7 @@ Forgive me for the spaghetti code.
 
 Any suggestions, questions, or anything else? Feel free to contact me, im lonely.
 
-Contact me on Discord: #PixeledBrain#0070 or by email: pixeledbrain@gmail.com
+Contact me on Discord: `#PixeledBrain#0070` or by email: pixeledbrain@gmail.com
 
 # Instructions:
 
@@ -19,16 +19,16 @@ Contact me on Discord: #PixeledBrain#0070 or by email: pixeledbrain@gmail.com
 #### Python and packages.
 
 I used version 3.9.4, so I recommend using that one for less issues.
-https://www.python.org/downloads/release/python-394/
+[Download here.](https://www.python.org/downloads/release/python-394/)
 
 then run the command on cmd:
 `py -3 -m pip install -U discord.py`
 to install discord.py
-(If that doesn't work, check their installation guide https://discordpy.readthedocs.io/en/stable/intro.html#installing )
+(If that doesn't work, check out [their installation guide](https://discordpy.readthedocs.io/en/stable/intro.html#installing))
 
 
 #### A discord application with a bot assigned.
-* Create one at https://discord.com/developers/applications
+* Create one at the [Discord developer website](https://discord.com/developers/applications)
 * Click on New Application, give it a name (this is not the user name for the bot)
 * Click on the `Bot` tab on the left.
 * Add a bot, give it a name.

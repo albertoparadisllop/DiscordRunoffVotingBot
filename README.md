@@ -87,10 +87,12 @@ Note:
 - [X] Invite command so people can invite the bot to a server
 - [X] Contact command
 - [X] Github command
+- [X] Add a "commands" command
 - [ ] Command aliases
-- [ ] Add a "commands" command
 - [ ] Save status every so often
 - [ ] Load from previous status
+- [ ] Remove echo command
+- [ ] Make an actual `commands` command
 
 ## TODO Maybe
 - [ ] Remove vote command

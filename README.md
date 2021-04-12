@@ -67,19 +67,27 @@ Note:
 * `closeVoting` - Makes people unable to vote
 * `openVoting` - Makes peolpe able to vote (if it was closed manually)
 * `calculateWinner` - Calculates the vote's winner, and removes the current vote.
-* `vote <candidate1>:<preference1> [candidate2>:<preference2 ...]` - Registers a vote. `preference` values should be thought of as "1st option" for value 1, "2nd option" for value 2... Not all candidates need a vote. Just delete that line if you never want to give it a vote.
+* `vote <candidate1>:<preference1> [candidate2>:<preference2 ...]` - Registers a vote. `preference` values should be thought of as "1st option" for value 1, "2nd option" for value 2... Not all candidates need a vote. Just delete that line if you never want to give it a vote. If a person casts more than one vote, their previous one is deleted.
 * `removeVoting` - Removes the voting without calculating a winner.
 * `prefix <newPrefix>` - Changes command prefix to given one.
+* `help` or `contact` - Sends a message with my Discord name for contact `PixeledBrain#0070`
+* `invite` - Invite link for my bot using this. (you can modify the link to yours in botClient.py)
+* `github` - Links this page
 
 ## TODO:
 - [X] Make it so that each person can only vote once per vote
 - [X] Make it so that people can modify their vote if they recast it
-- [ ] Invite command so people can invite the bot to a server
+- [X] Invite command so people can invite the bot to a server
+- [X] Contact command
+- [X] Github command
 - [ ] Command aliases
 - [ ] Add a "commands" command
-- [ ] Save status every so often?
+- [ ] Save status every so often
+- [ ] Load from previous status
 
 ## TODO Maybe
+- [ ] Remove vote command
 - [ ] Custom command aliases per server
 - [ ] Make it pretty
 - [ ] Send channel id for vote collection
+- [ ] Private voting? dms?

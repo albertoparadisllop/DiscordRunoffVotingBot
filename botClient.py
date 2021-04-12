@@ -28,7 +28,11 @@ class VotingClient(discord.Client):
                      "removevoting": self.removeVoting,
                      "exit": self.closeBot,
                      "startup": self.startUp,
-                     "prefix": self.changePrefix
+                     "prefix": self.changePrefix,
+                     "invite": self.invite,
+                     "github": self.githubLink,
+                     "contact": self.contact,
+                     "help": self.contact
                     }
 
         self.servers = {}
@@ -165,6 +169,15 @@ class VotingClient(discord.Client):
         if await self.isAdmin(ctx):
             self.servers[ctx.guild.id].prefix = newPrefix
             await ctx.channel.send(f"Prefix changed to {newPrefix}")
+
+    async def contact(self, ctx):
+        await ctx.channel.send("Need any help? Contact the creator on Discord: PixeledBrain#0070")
+
+    async def githubLink(self, ctx):
+        await ctx.channel.send("Follow any possible future development of the bot on Github: <https://github.com/pixeledbrain/DiscordRunoffVotingBot>")
+
+    async def invite(self, ctx):
+        await ctx.channel.send("Invite me to a server using: <https://discord.com/oauth2/authorize?client_id=830927490482569217&permissions=347200&scope=bot>")
 
     async def startUp(self, ctx, paramList):
         newServerData = ServerData(id = ctx.guild.id)

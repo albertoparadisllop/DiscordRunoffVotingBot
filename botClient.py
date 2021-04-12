@@ -3,11 +3,6 @@ import voting
 
 defaultPrefix = "!"
 
-PREFIX = 0
-VOTEINSTANCE = 1
-VOTINGOPEN = 2
-ADMINROLE = 3
-
 class ServerData():
 
     def __init__(self, id, adminRole=0, prefix=defaultPrefix, voteInstance=None, votingOpen=False):
@@ -31,7 +26,8 @@ class VotingClient(discord.Client):
                      "calculatewinner": self.calculateWinner,
                      "removevoting": self.removeVoting,
                      "exit": self.closeBot,
-                     "startup": self.startUp
+                     "startup": self.startUp,
+                     "prefix": self.changePrefix
                     }
 
         self.servers = {}
@@ -161,6 +157,12 @@ class VotingClient(discord.Client):
     
     async def noCommand(self, ctx, *args, **kwargs):
         return -1
+
+    async def changePrefix(self, ctx, paramList):
+        newPrefix = paramList[0]
+        if await self.isAdmin(ctx):
+            self.servers[ctx.guild.id].prefix = newPrefix
+            await ctx.channel.send(f"Prefix changed to {newPrefix}")
 
     async def startUp(self, ctx, paramList):
         newServerData = ServerData(id = ctx.guild.id)

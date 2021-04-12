@@ -1,3 +1,7 @@
+Made using the amazing https://github.com/Rapptz/discord.py
+
+Forgive me for the spaghetti code.
+
 # Instructions:
 
 ## Requirements:
@@ -44,6 +48,10 @@ You can also run the bot directly from the command line by running the command:
 
 Replacing `TOKEN` with your bot's token.
 
+# Closing the bot
+
+`Ctrl+C` on your keyboard with the CMD window focused should close the bot. Closing the whole CMD window will probably work too.
+
 ## Commands:
 
 Default prefix: `!`
@@ -53,7 +61,7 @@ Note:
 `[VAR]` -  means VAR is optional
 
 * `echo <Text>` - I just use it to check if the bot is alive.
-* `startUp <adminRole id> [new Prefix]` - Creates server data. Stores an administration role, and optionally, a new prefix.
+* `startUp <adminRole id> [new Prefix]` - Creates server data. Stores an administration role (need to pass role ID), and optionally, a new prefix.
 * `exit` - Removes any stored server data
 * `createVote <candidate1>,<candidate2>[, ...]` creates a vote with the given candidates, and prints out a nice copy-pastable vote message. Opens the voting.
 * `closeVoting` - Makes people unable to vote
@@ -61,3 +69,4 @@ Note:
 * `calculateWinner` - Calculates the vote's winner, and removes the current vote.
 * `vote <candidate1>:<preference1> [candidate2>:<preference2 ...]` - Registers a vote. `preference` values should be thought of as "1st option" for value 1, "2nd option" for value 2... Not all candidates need a vote. Just delete that line if you never want to give it a vote.
 * `removeVoting` - Removes the voting without calculating a winner.
+* `prefix <newPrefix>` - Changes command prefix to given one.

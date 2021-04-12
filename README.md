@@ -10,7 +10,7 @@ Forgive me for the spaghetti code.
 
 Any suggestions, questions, or anything else? Feel free to contact me, im lonely.
 
-Contact me on Discord: `#PixeledBrain#0070` or by email: pixeledbrain@gmail.com
+Contact me on Discord: `@PixeledBrain#0070` or by email: pixeledbrain@gmail.com
 
 # Instructions:
 
@@ -20,7 +20,7 @@ To invite my instance of this bot, use this link:
 
 https://discord.com/oauth2/authorize?client_id=830927490482569217&permissions=347200&scope=bot
 
-It will probably be offline though, if you want to use it, feel free to poke me on Discord `#PixeledBrain#0070`
+It will probably be offline though, if you want to use it, feel free to poke me on Discord `@PixeledBrain#0070`
 
 ## Requirements:
 

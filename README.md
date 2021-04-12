@@ -117,7 +117,7 @@ Command | Description | Permissions | Example
 - [X] Change readme commands section to a table.
 
 ## TODO Maybe
-- [ ] Remove vote command
+- [X] Remove vote command
 - [ ] Custom command aliases per server
 - [ ] Make it pretty
 - [ ] Send channel id for vote collection

@@ -2,6 +2,12 @@ Made using the amazing https://github.com/Rapptz/discord.py
 
 Forgive me for the spaghetti code.
 
+# Contact:
+
+Any suggestions, questions, or anything else? Feel free to contact me, im lonely.
+
+Contact me on Discord: #PixeledBrain#0070 or by email: pixeledbrain@gmail.com
+
 # Instructions:
 
 ## Requirements:

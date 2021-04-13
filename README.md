@@ -14,7 +14,7 @@ Contact me on Discord: `@PixeledBrain#0070` or by email: pixeledbrain@gmail.com
 
 # Instructions:
 
-## Use a preexisting bot:
+## Use a pre-existing bot:
 
 To invite my instance of this bot, use this link:
 
@@ -42,7 +42,7 @@ to install discord.py
 * Add a bot, give it a name.
 * Copy the bot's token, replace "TOKENHERE" in "runBot.bat" with the token
 
-To invite that bot to a server, you need an invite link. 
+To invite that bot to a server, you need an invite link.
 * Go over to the `OAuth2` tab in your application's page.
 * Tick `bot` in the `scopes` category.
 * On the `permissions` category, tick the following:
@@ -78,7 +78,7 @@ After having done set up the bot, and have it in a server, while online, an exam
 2. Send a message on Discord with `!startUp ROLEID`, replacing "ROLEID" with the role id you copied earlier.
 3. To create an election, run `!createElection option1,option2,option3`. You can replace the options, or add and remove more.
 4. Copy the command example the bot provides, and on each line, replace "x" with your desired preference. You can remove lines for votes you dont want to make.
-5. Once everyone has voted, run `!electionWinner` to get a result. This gets rid of the election. 
+5. Once everyone has voted, run `!electionWinner` to get a result. This gets rid of the election.
 6. Go back to step 3 if you want to set up another one.
 
 ## Commands:
@@ -87,15 +87,17 @@ Default prefix: `!`
 
 Note that commands are not case-sensitive, but any parameters are.
 
-Note:
+Notes:
 `<VAR>` - means VAR is obligatory
 `[VAR]` -  means VAR is optional
+
+Al `AdminRole` permissions can also be run by users with a role that gives them the "Administrator" permission on Discord.
 
 Command | Description | Permissions | Example
 ------------ | ------------- | ------------- | -------------
 `startUp <AdminRole id> [new Prefix]` | Creates server data. Sets bot `AdminRole` (need to provide role ID, not name), and optionally, a new prefix. | Discord "Administrator" Permission | `!startUp 556940676495835146 $`
 `exit` | Removes any stored server data. | AdminRole | `!exit`
-`createElection <c1>,<c2>[, ...]` | creates an election with the given candidates, and prints out a nice copy-pastable vote message. Opens the voting. | AdminRole | `!createElection candidate1,candidate2,candidate3`
+`createElection <c1>,<c2>[, ...]` | creates an election with the given candidates, and prints out a nice copy-pasteable vote message. Opens the voting. | AdminRole | `!createElection candidate1,candidate2,candidate3`
 `closeElection` |  Makes people unable to vote. | AdminRole | `!closeElection`
 `openElection` | Makes peolpe able to vote (if it was closed manually). | AdminRole | `!openElection`
 `electionWinner` | Calculates the election's winner, and removes the current vote. | AdminRole  | `!electionWinner`
@@ -113,7 +115,7 @@ Command | Description | Permissions | Example
 - [X] Make it so that people can modify their vote if they recast it
 - [X] Invite command so people can invite the bot to a server
 - [X] Contact command
-- [X] Github command
+- [X] GitHub command
 - [X] Add a "commands" command
 - [ ] Command aliases
 - [ ] Save status every so often
@@ -124,8 +126,8 @@ Command | Description | Permissions | Example
 - [X] Add use instructions
 - [X] Change readme commands section to a table.
 - [X] Put each component into its own folder.
-- [ ] Fix up code for bot class.
-- [ ] Make it so Administration role can do all commands too (change isAdmin function) (In case wrong role id is provided)
+- [X] Make it so Administration role can do all commands too (change isAdmin function) (In case wrong role id is provided)
+- [X] Flake8 compliant
 
 
 ## TODO Maybe
@@ -134,6 +136,7 @@ Command | Description | Permissions | Example
 - [ ] Custom command aliases per server
 - [ ] Make it pretty
 - [ ] Send channel id for vote collection
-- [ ] Private voting? dms?
+- [ ] Private voting? dm?
 - [ ] Multiple elections per server simultaneously (with name ids?)
 - [ ] Make AdminRole optional?
+- [ ] Fix up code for bot class.

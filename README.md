@@ -123,8 +123,10 @@ Command | Description | Permissions | Example
 - [X] Refactor (difference between vote and election)
 - [X] Add use instructions
 - [X] Change readme commands section to a table.
-- [ ] Put each component into its own folder.
+- [X] Put each component into its own folder.
 - [ ] Fix up code for bot class.
+- [ ] Make it so Administration role can do all commands too (change isAdmin function) (In case wrong role id is provided)
+
 
 ## TODO Maybe
 - [X] Remove vote command
@@ -134,3 +136,4 @@ Command | Description | Permissions | Example
 - [ ] Send channel id for vote collection
 - [ ] Private voting? dms?
 - [ ] Multiple elections per server simultaneously (with name ids?)
+- [ ] Make AdminRole optional?

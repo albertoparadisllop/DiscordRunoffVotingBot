@@ -1,7 +1,7 @@
 import sys
 
 def main(token):
-	import botClient
+	from bot import botClient
 	botClient.run_bot(token)
 
 if __name__ == '__main__':

@@ -1,5 +1,5 @@
 import discord
-import voting
+from voting import voting
 
 defaultPrefix = "!"
 

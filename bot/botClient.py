@@ -91,7 +91,7 @@ class VotingClient(discord.Client):
                                        "paste, replace `x` with the priority, "
                                        "and remove lines): \n"
                                        f"```\n{message}\n```\n"
-                                       "Send `{pfix}closeElection` "
+                                       f"Send `{p}closeElection` "
                                        f"to close votes, and `{p}"
                                        "electionWinner` to calculate "
                                        "a winner.")

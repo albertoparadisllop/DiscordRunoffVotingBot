@@ -16,6 +16,5 @@ if __name__ == '__main__':
         print("Token from env var")
         bot_token = os.getenv("TOKEN")
     else:
-        print("No bot token provided")
-        raise Exception("")
+        raise Exception("No bot token provided")
     main(bot_token)

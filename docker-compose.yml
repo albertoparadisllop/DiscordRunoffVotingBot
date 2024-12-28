@@ -1,0 +1,6 @@
+services:
+  bot:
+    build: .
+    command: ["python", "-u", "main.py"]
+    env_file:
+      - .env

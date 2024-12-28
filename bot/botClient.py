@@ -40,8 +40,8 @@ class VotingClient(discord.Client):
                     }
 
         self.servers = {}
-
-        super().__init__()
+        intents = discord.Intents.all()
+        super().__init__(intents=intents)
 
     async def run_command(self, messageText, messageContext):
         if messageContext.guild.id in self.servers:
@@ -88,8 +88,7 @@ class VotingClient(discord.Client):
                 await ctx.channel.send(f"Election created. "
                                        "Send Your votes in now with the "
                                        "following format (you can copy and "
-                                       "paste, replace `x` with the priority, "
-                                       "and remove lines): \n"
+                                       "paste, replace `x` with the priority): \n"
                                        f"```\n{message}\n```\n"
                                        f"Send `{p}closeElection` "
                                        f"to close votes, and `{p}"
@@ -109,7 +108,7 @@ class VotingClient(discord.Client):
                 await ctx.channel.send("Election not open!")
             else:
                 voteToMake = {}
-                voteList = ctx.content.split("\n")[1:]
+                voteList = ctx.content.split()[1:]
                 for line in voteList:
                     parts = [i.strip() for i in line.split(":")]
                     voteToMake[int(parts[1])] = parts[0]
@@ -128,6 +127,7 @@ class VotingClient(discord.Client):
                         await ctx.channel.send("Vote added!")
                     else:
                         await ctx.channel.send("Vote replaced!")
+                    await ctx.delete()
                 except Exception as Err:
                     await ctx.channel.send("Error adding vote :(")
                     print(Err)
@@ -234,7 +234,7 @@ class VotingClient(discord.Client):
 
     async def contact(self, ctx):
         await ctx.channel.send("Need any help? Contact the creator on "
-                               "Discord: PixeledBrain#0070")
+                               "Discord: PixeledBrain")
 
     async def githubLink(self, ctx):
         await ctx.channel.send("Follow any possible future development of the "

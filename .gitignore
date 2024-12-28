@@ -1,3 +1,4 @@
 mytoken.txt
 *.pyc
 runBot.bat
+.env

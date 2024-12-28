@@ -45,6 +45,7 @@ to install discord.py
 To invite that bot to a server, you need an invite link.
 * Go over to the `OAuth2` tab in your application's page.
 * Tick `bot` in the `scopes` category.
+* On the `Privileged Gateway Intents`, add all 3 intents (im too lazy to give them one by one)
 * On the `permissions` category, tick the following:
 	* View Channels
 	* Send Messages
@@ -52,12 +53,20 @@ To invite that bot to a server, you need an invite link.
 	* Read Message History
 	* Use External Emojis
 	* Add Reactions
+	* Manage messages
 * Copy the link at the bottom of the `scopes` section.
 
 That link will be used to invite the bot to different servers.
 
 ## Running the bot
 
+### Docker compose
+
+Its easier to run with docker compose, to do so, simply copy `.env.example` to `.env` and replace the token value with your bot token. Then run `docker compose up --build -d`
+
+To close it, run `docker compose down`
+
+### Windows
 If you're on windows, you can just run the "runBot.bat" file to run the bot (assuming the correct token has been placed in the file, as described in the section above)
 
 You can also run the bot directly from the command line by running the command:
@@ -66,7 +75,7 @@ You can also run the bot directly from the command line by running the command:
 
 Replacing `TOKEN` with your bot's token.
 
-## Closing the bot
+#### Closing the bot
 
 `Ctrl+C` on your keyboard with the CMD window focused should close the bot. Closing the whole CMD window will probably work too.
 

@@ -84,7 +84,7 @@ class VotingClient(discord.Client):
                 messageList = [self.servers[ctx.guild.id].prefix+"vote"]
                 for i in candidates:
                     messageList.append(f"{i}:x")
-                message = "\n".join(messageList)
+                message = " ".join(messageList)
                 await ctx.channel.send(f"Election created. "
                                        "Send Your votes in now with the "
                                        "following format (you can copy and "

@@ -34,6 +34,9 @@ then run the command on cmd:
 to install discord.py
 (If that doesn't work, check out [their installation guide](https://discordpy.readthedocs.io/en/stable/intro.html#installing))
 
+#### Docker + Docker compose
+
+Alternatively, you can use docker. A simple compose file is included.
 
 #### A discord application with a bot assigned.
 * Create one at the [Discord developer website](https://discord.com/developers/applications)
